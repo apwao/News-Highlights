@@ -110,6 +110,10 @@ def process_topheadlines_results(topheadlines_results_list):
 
  
 def get_everything():
+    """
+    function get_everything that returns all the news available 
+    within the news website
+    """
     
     get_everything_url = everything_base_url.format(api_key)
     
@@ -126,6 +130,10 @@ def get_everything():
     return everything_results
 
 def process_everything_results(everything_results_list):
+    """
+    function process_everything_results that models all the news results
+    into an instance of class Everything
+    """
     everything_results = []
     
     for everything_item in everything_results_list:
