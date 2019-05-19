@@ -86,6 +86,28 @@ def get_top_headlines(source):
     
     return topheadlines_results    
             
+def process_topheadlines_results(topheadlines_results_list):
+    """
+    process topheadlines_results function to model the response into 
+    an instance of class TopHeadlines 
+    """
+    
+    topheadlines_results[]
+    
+    for topheadlines_item in topheadlines_results_list:
+        author = topheadlines_item.get('author')
+        title = topheadlines_item.get('title')
+        description = topheadlines_item.get('description')
+        url = topheadlines_item.get('url')
+        urlToImage = topheadlines_item.get('urlToImage')
+        publishedAt = topheadlines_item.get('publishedAt')
+        
+        
+        topheadlines_object = TopHeadlines(author,title,description,url, urlToImage, publishedAt)
+        topheadlines_results.append(topheadlines_object)
+        
+    return topheadlines_results
+
         
         
 
