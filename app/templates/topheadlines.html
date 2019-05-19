@@ -1,0 +1,20 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block content %}
+    <h1>News-Sources</h1>
+    {% for news_source in news_sources %}
+        <p>{{news_source.name}}</p>
+    {% endfor %}
+    <h1>Top headlines</h1>
+    {% for topheadline in topheadlines %}
+    {% if topheadline.urlToImage %}
+
+        <h1>{{topheadline.title}}</h1>
+        <p>{{topheadline.description}}</p>
+        <a href="{{topheadline.url}}">Read more...</a>
+        <p>Written by: {{topheadline.author}} on {{hope.publishedAt}}</p>
+        <img src="{{topheadline.urlToImage}}">
+
+    {% endif %}
+    {% endfor %}
+{% endblock %}
