@@ -1,6 +1,6 @@
 from app import app
 import urllib.request, json
-from .models import sources, everything, topheadlines,
+from .models import sources, everything, topheadlines
 
 #Accessing the classes within the files
 Sources = sources.Sources
@@ -39,9 +39,9 @@ def get_sources():
             #if not empty, assign to new variable
             source_results_list = get_sources_response['sources']
             #process results further using the Sources class 
-            source_results = process_source_results(source_results_list)
+            sources_results = process_source_results(source_results_list)
      #return processed results       
-    return source_results
+    return sources_results
 
 def process_source_results(news_sources_list):
     """
@@ -49,7 +49,7 @@ def process_source_results(news_sources_list):
     into an instance of class Sources
     """
     #return type of process_sources_results made to a list
-    source_results = []
+    sources_results = []
     
     for source_item in news_sources_list:
         id = source_item.get('id')
@@ -62,9 +62,9 @@ def process_source_results(news_sources_list):
         
         #create an instance of class Sources
         source_object = Sources(id,name,description,url,category,language,country)
-        source_results.append(source_object)
+        sources_results.append(source_object)
         
-    return source_results
+    return sources_results
 
 def get_topheadlines(source):
     """
@@ -72,9 +72,9 @@ def get_topheadlines(source):
     and returns the top-headlines of that source
     """
     #final combined url
-    get_top_headlines_url = topheadlines_base_url.format(source, api_key)
+    get_topheadlines_url = topheadlines_base_url.format(source, api_key)
     
-    with urllib.request.urlopen("get_top_headlines_url") as url:
+    with urllib.request.urlopen("get_topheadlines_url") as url:
         topheadlines_data = url.read()
         topheadlines_response = json.loads(topheadlines_data)
         
@@ -92,7 +92,7 @@ def process_topheadlines_results(topheadlines_results_list):
     an instance of class TopHeadlines 
     """
     
-    topheadlines_results[]
+    topheadlines_results = []
     
     for topheadlines_item in topheadlines_results_list:
         author = topheadlines_item.get('author')
