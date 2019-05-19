@@ -19,8 +19,16 @@ def index():
 @app.route('/news/<source>')
 def topheadlines(source):
     """
-    A function that returns the 
+    A function that returns the top headlines of different news sources when the user clicks 
+    on a news source
     """
+    # get the news sources
+    news_sources = get_sources()
+    
+    #Get topheadlines for the specified source
+    top_headlines = get_topheadlines(source)
+    
+    return render_template('topheadlines.html', news_sources = new_sources, topheadlines = topheadlines)
 
 
 
