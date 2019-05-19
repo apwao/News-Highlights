@@ -4,14 +4,12 @@ class TopHeadlines:
     headlines from a given source
     """
 
-    def __init__(self, id, name, author, title, description, url, urlToImage, publishedAt)
+    def __init__(self, author, title, description, url, urlToImage, publishedAt)
         """
         __init__ method to initialize parameters required to create 
         instances of class TopHeadlines
         """
-
-        self.id = id
-        self.name = name 
+        
         self.author = author
         self.title = title
         self.description = description
