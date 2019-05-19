@@ -108,7 +108,26 @@ def process_topheadlines_results(topheadlines_results_list):
         
     return topheadlines_results
 
+ 
+def get_everything():
+    
+    get_everything_url = everything_base_url.format(api_key)
+    
+    with urllib.request.urlopen(get_everything_url) as url:
+        get_everything_data = url.read()
+        get_everything_response = json.loads(get_everything_data)
+       
+        everything_results = None
         
+        if get_everything_response['articles']:
+            everything_results_list = get_everything_response['articles']
+            everything_results = process_everything_results(everything_results_list)
+   
+    return everything_results
+
+
+            
+              
         
 
 
