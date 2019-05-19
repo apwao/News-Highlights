@@ -3,7 +3,9 @@ class Config:
     The main configurations parent class with configurations common to both 
     development and production
     """
-    pass
+    ALL_SOURCES_BASE_URL = 'https://newsapi.org/v2/sources?apiKey={}'
+    TOP_HEADLINES_BASE_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'
+    EVERYTHING_BASE_URL = 'https://newsapi.org/v2/everything?q=trending&apiKey={}'
 
 class ProdConfig(Config):
     """
