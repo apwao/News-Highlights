@@ -66,9 +66,9 @@ def process_source_results(news_sources_list):
         
     return source_results
 
-def get_top_headlines(source):
+def get_topheadlines(source):
     """
-    get_top_headlines method that takes in the name of a specific source
+    get_topheadlines method that takes in the name of a specific source
     and returns the top-headlines of that source
     """
     #final combined url
