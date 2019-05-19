@@ -44,6 +44,10 @@ def get_sources():
     return source_results
 
 def process_source_results(news_sources_list):
+    """
+    process_source_results function to model the source_results from API
+    into an instance of class Sources
+    """
     #return type of process_sources_results made to a list
     source_results = []
     
@@ -61,6 +65,32 @@ def process_source_results(news_sources_list):
         source_results.append(source_object)
         
     return source_results
+
+def get_top_headlines(source):
+    """
+    get_top_headlines method that takes in the name of a specific source
+    and returns the top-headlines of that source
+    """
+    #final combined url
+    get_top_headlines_url = topheadlines_base_url.format(source, api_key)
+    
+    with urllib.request.urlopen("get_top_headlines_url") as url:
+        topheadlines_data = url.read()
+        topheadlines_response = json.loads(topheadlines_data)
+        
+        topheadlines_results = None
+        
+        if topheadlines_response['articles']:
+            topheadlines_results_list = topheadlines_response['articles']
+            topheadlines_results = process_topheadlines_results(topheadlines_results_list)
+    
+    return topheadlines_results    
+            
+        
+        
+
+
+
     
             
             
