@@ -3,8 +3,9 @@
 {% block content %}
     <h1>News-Sources</h1>
     {% for news_source in news_sources %}
-        <p>{{news_source.name}}</p>
-    {% endfor %}
+        <a href="/source/{{news_source.id}}"><p>{{news_source.name}}</p></a>
+    {% endfor %} 
+
     <h1>Top headlines</h1>
     {% for topheadline in topheadlines %}
     {% if topheadline.urlToImage %}
@@ -12,7 +13,7 @@
         <h1>{{topheadline.title}}</h1>
         <p>{{topheadline.description}}</p>
         <a href="{{topheadline.url}}">Read more...</a>
-        <p>Written by: {{topheadline.author}} on {{hope.publishedAt}}</p>
+        <p>Written by: {{topheadline.author}} on {{topheadline.publishedAt}}</p>
         <img src="{{topheadline.urlToImage}}">
 
     {% endif %}
