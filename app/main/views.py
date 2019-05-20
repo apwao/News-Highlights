@@ -1,8 +1,9 @@
 from flask import render_template, request,redirect,url_for
-from app import app
-from .request import get_sources, get_top_headlines, get_everything
+from . import main
+from ..requests import get_sources, get_top_headlines, get_everything
+from ..models import Sources, TopHeadlines, Everything
 
-@app.route('/')
+@main.route('/')
 def index():
     """
     A function than returns the home page when called upon
@@ -18,7 +19,7 @@ def index():
     return render_template('index.html', news_sources = news_sources, everything = everything)
 
 
-@app.route('/source/<source>')
+@main.route('/source/<source>')
 def topheadlines(source):
     """
     A function that returns the top headlines of different news sources when the user clicks 

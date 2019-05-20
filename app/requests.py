@@ -1,20 +1,22 @@
-from app import app
 import urllib.request, json
-from .models import sources,everything,topheadlines
+from .models import Sources,Everything,TopHeadlines
 
-#Accessing the classes within the files
-Sources = sources.Sources
-Everything = everything.Everything
-TopHeadlines = topheadlines.TopHeadlines
+
 
 #Accessing the API key
-api_key = app.config['NEWS_API_KEY']
+api_key = None     
 
+sources_base_url = None
+topheadlines_base_url = None
+everything_base_url = None
 
-#Accessing the sources base url
-sources_base_url =app.config['ALL_SOURCES_BASE_URL']
-topheadlines_base_url = app.config['TOP_HEADLINES_BASE_URL']
-everything_base_url = app.config['EVERYTHING_BASE_URL']
+def configure_request(app):
+  global api_key, sources_base_url,topheadlines_base_url,everything_base_url
+  
+  api_key =app.config['NEWS_API_KEY'] 
+  sources_base_url =app.config['ALL_SOURCES_BASE_URL']
+  topheadlines_base_url = app.config['TOP_HEADLINES_BASE_URL']
+  everything_base_url = app.config['EVERYTHING_BASE_URL']
 
 def get_sources():
     """
