@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, request,redirect,url_for
 from app import app
+from .request import get_sources, get_top_headlines, get_everything
 
 @app.route('/')
 def index():
@@ -11,12 +12,12 @@ def index():
     
     #get all news articles available
     everything = get_everything()
+    
+    # title = 'Home - Find all the current news at your convinience'
 
-    title = 'Home - Find all the current news at your convinience'
+    return render_template('index.html', news_sources = news_sources, everything = everything)
 
-    return render_template('index.html' title = title, new_sources = news_sources, everything = everything)
-
-@app.route('/news/<source>')
+@app.route('/source/<source>')
 def topheadlines(source):
     """
     A function that returns the top headlines of different news sources when the user clicks 
@@ -26,9 +27,12 @@ def topheadlines(source):
     news_sources = get_sources()
     
     #Get topheadlines for the specified source
-    top_headlines = get_topheadlines(source)
+    top_headlines = get_top_headlines(source)
+    print (top_headlines)
     
-    return render_template('topheadlines.html', news_sources = new_sources, topheadlines = topheadlines)
+    
+    return render_template('topheadlines.html', news_sources = news_sources, topheadlines = top_headlines)
+
 
 
 
