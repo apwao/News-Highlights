@@ -12,10 +12,11 @@ def index():
     
     #get all news articles available
     everything = get_everything()
-    
+    print(everything)
     # title = 'Home - Find all the current news at your convinience'
 
     return render_template('index.html', news_sources = news_sources, everything = everything)
+
 
 @app.route('/source/<source>')
 def topheadlines(source):
@@ -28,7 +29,7 @@ def topheadlines(source):
     
     #Get topheadlines for the specified source
     top_headlines = get_top_headlines(source)
-    print (top_headlines)
+    
     
     
     return render_template('topheadlines.html', news_sources = news_sources, topheadlines = top_headlines)
