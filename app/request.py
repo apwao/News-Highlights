@@ -1,6 +1,6 @@
 from app import app
 import urllib.request, json
-from .models import sources, everything, topheadlines
+from .models import sources,everything,topheadlines
 
 #Accessing the classes within the files
 Sources = sources.Sources
@@ -66,47 +66,41 @@ def process_source_results(news_sources_list):
         
     return sources_results
 
-def get_topheadlines(source):
-    """
-    get_topheadlines method that takes in the name of a specific source
-    and returns the top-headlines of that source
-    """
-    #final combined url
-    get_topheadlines_url = topheadlines_base_url.format(source, api_key)
-    
-    with urllib.request.urlopen("get_topheadlines_url") as url:
-        topheadlines_data = url.read()
-        topheadlines_response = json.loads(topheadlines_data)
-        
-        topheadlines_results = None
-        
-        if topheadlines_response['articles']:
-            topheadlines_results_list = topheadlines_response['articles']
-            topheadlines_results = process_topheadlines_results(topheadlines_results_list)
-    
-    return topheadlines_results    
+def get_top_headlines(source) :
+  get_top_headlines_url = topheadlines_base_url.format(source, api_key)
+
+  with urllib.request.urlopen(get_top_headlines_url) as url :
+    top_headlines_data = url.read()
+    top_headlines_response = json.loads(top_headlines_data)
+
+    top_headlines_results = None 
+
+    if top_headlines_response['articles'] :
+      top_headlines_results_list = top_headlines_response['articles']
+      top_headlines_results = process_topheadlines_results(top_headlines_results_list)
+
+  return(top_headlines_results)  
             
-def process_topheadlines_results(topheadlines_results_list):
-    """
-    process topheadlines_results function to model the response into 
-    an instance of class TopHeadlines 
-    """
+
+def process_topheadlines_results(top_headlines_results_list) :
+  '''
+  process Top_headlines results and transform them to a list of objects
+  '''
+  top_headlines_results = []
+  for top_headlines_item in top_headlines_results_list :
+
+    author = top_headlines_item.get('author')
+    title = top_headlines_item.get('title')
+    description = top_headlines_item.get('description')
+    url = top_headlines_item.get('url')
+    urlToImage = top_headlines_item.get('urlToImage')
+    publishedAt = top_headlines_item.get('publishedAt')
     
-    topheadlines_results = []
-    
-    for topheadlines_item in topheadlines_results_list:
-        author = topheadlines_item.get('author')
-        title = topheadlines_item.get('title')
-        description = topheadlines_item.get('description')
-        url = topheadlines_item.get('url')
-        urlToImage = topheadlines_item.get('urlToImage')
-        publishedAt = topheadlines_item.get('publishedAt')
-        
-        
-        topheadlines_object = TopHeadlines(author,title,description,url, urlToImage, publishedAt)
-        topheadlines_results.append(topheadlines_object)
-        
-    return topheadlines_results
+
+    top_headlines_object = TopHeadlines(author, title, description, url, urlToImage, publishedAt)
+    top_headlines_results.append(top_headlines_object)
+
+  return top_headlines_results
 
  
 def get_everything():
