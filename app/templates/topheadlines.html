@@ -1,21 +1,80 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>News-Sources</h1>
-    {% for news_source in news_sources %}
-        <a href="/source/{{news_source.id}}"><p>{{news_source.name}}</p></a>
-    {% endfor %} 
+    
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>News Sources</h3>
+                <strong>Sources</strong>
+            </div>
 
-    <h1>Top headlines</h1>
-    {% for topheadline in topheadlines %}
-    {% if topheadline.urlToImage %}
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    
+                </li>
+                <li>
+                        {% for news_source in news_sources %}
+                        <p>
+                            <a href="/source/{{news_source.id}}">{{news_source.name}}</a>
+                        </p>
+                    {% endfor %}
+                </li>
+                
+                
+            </ul>
 
-        <h1>{{topheadline.title}}</h1>
-        <p>{{topheadline.description}}</p>
-        <a href="{{topheadline.url}}">Read more...</a>
-        <p>Written by: {{topheadline.author}} on {{topheadline.publishedAt}}</p>
-        <img src="{{topheadline.urlToImage}}">
+            <ul class="list-unstyled CTAs">
+                
+                <li>
+                    <a href="#" class="article">NEWS</a>
+                </li>
+            </ul>
+        </nav>
 
-    {% endif %}
-    {% endfor %}
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sources</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    
+                </div>
+            </nav>
+            <h1>Top Headlines</h1>
+            <hr my-5>
+            
+            {% for topheadline in topheadlines %}
+            {% if topheadline.urlToImage %}
+            <div class="d-flex justify-content-center">
+            <div class="card" style="width: 35rem;">
+            <img class="card-img-top img-responsive" src="{{topheadline.urlToImage}}" alt="Card image cap" >
+            <div class="card-body">
+                <h5 class="card-title">{{topheadline.title|truncate(10)}}</h5>
+                <p class="card-text">{{topheadline.description}}</p>
+                <p class="card-text"><small class="text-muted">{{topheadline.author}} {{topheadline.publishedAt}} </small></p>
+                <a href="{{topheadline.url}}">Read more...</a>
+            </div>
+            </div>
+            </div>
+            <div class="line"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
 {% endblock %}
