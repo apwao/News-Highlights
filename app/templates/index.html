@@ -1,21 +1,101 @@
-{% extends 'bootstrap/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-    <h1>News Sources</h1>
-    {% for news_source in news_sources %}
-        <p>
-            <a href="/source/{{news_source.id}}">{{news_source.name}}</a>
-        </p>
-    {% endfor %}
-    <h1>Trending News</h1>
-    {% for each in everything %}
-    {% if each.urlToImage %}
-        <h2>{{each.title}}</h2>
-        <p>{{each.description}}</p>
-        <a href="{{each.url}}">Read more...</a>
-        <p>Article by {{each.author}} on {{each.publishedAt}}</p>
-    {% endif %}
-    {% endfor %}
+
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>News Sources</h3>
+                <strong>Sources</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    
+                </li>
+                <li>
+                        {% for news_source in news_sources %}
+                        <p>
+                            <a href="/source/{{news_source.id}}">{{news_source.name}}</a>
+                        </p>
+                    {% endfor %}
+                </li>
+                
+                
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                
+                <li>
+                    <a href="#" class="article">NEWS</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    
+                </div>
+            </nav>
+<!-- 
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="line"></div>
+
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="line"></div>
+
+            <h2>Lorem Ipsum Dolor</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="line"></div>
+
+            <h3>Lorem Ipsum Dolor</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+            <h2 my-5>Fashion News</h2>
+            <hr my-5>
+            {% for each in everything %}
+            {% if each.urlToImage %}
+            <div class="d-flex justify-content-center">
+            <div class="card" style="width: 35rem;">
+            <img class="card-img-top img-responsive" src="{{each.urlToImage}}" alt="Card image cap" >
+            <div class="card-body">
+                <h5 class="card-title">{{each.title|truncate(10)}}</h5>
+                <p class="card-text">{{each.description}}</p>
+                <p class="card-text"><small class="text-muted">{{each.author}} {{each.publishedAt}} </small></p>
+                <a href="{{each.url}}">Read more...</a>
+            </div>
+            </div>
+            </div>
+            <div class="line"></div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+
 {% endblock %}
 
 
