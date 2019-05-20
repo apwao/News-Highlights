@@ -4,16 +4,16 @@
     <h1>News Sources</h1>
     {% for news_source in news_sources %}
         <p>
-            <a href="/news/{{news_source.id}}">{{news_source.name}}</a>
+            <a href="/source/{{news_source.id}}">{{news_source.name}}</a>
         </p>
     {% endfor %}
     <h1>Trending News</h1>
     {% for each in everything %}
     {% if each.urlToImage %}
-    <h2>{{each.title}}</h2>
-    <p>{{each.description}}</p>
-    <a href="{{each.url}}">Read more...</a>
-    <p>Article by {{each.author}} on {{each.publishedAt}}</p>
+        <h2>{{each.title}}</h2>
+        <p>{{each.description}}</p>
+        <a href="{{each.url}}">Read more...</a>
+        <p>Article by {{each.author}} on {{each.publishedAt}}</p>
     {% endif %}
     {% endfor %}
 {% endblock %}
